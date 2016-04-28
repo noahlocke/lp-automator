@@ -43,7 +43,7 @@ function addEstimate(taskID) {
 	var options = {
 	    host: 'https://requestbin.herokuapp.com',
 	    port: 80,
-	    path: 'https://requestbin.herokuapp.com/wkryaewk',
+	    path: '/wkryaewk',
 	    method: 'POST',
 	    headers: {
 	        'Content-Type': 'application/x-www-form-urlencoded',
