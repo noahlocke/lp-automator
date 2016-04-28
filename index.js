@@ -41,8 +41,8 @@ function addEstimate(taskID) {
 	    });
 
 	var options = {
-	    host: 'https://requestbin.herokuapp.com',
-	    port: 80,
+	    host: 'requestbin.herokuapp.com',
+	    port: 443,
 	    path: '/wkryaewk',
 	    method: 'POST',
 	    headers: {
