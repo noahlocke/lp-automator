@@ -22,8 +22,10 @@ app.listen(app.get('port'), function() {
 
 app.post('/liquid-task', jsonParser, function (request, response) {
 	response.sendStatus(200);
-	if (request.body.is_estimated === false) {
-		console.log(request.body.name + " has to time estimate!");
+	if (request.body.change_type === "create") {
+		if (request.body.is_estimated === false) {
+			console.log(request.body.name + " has no time estimate!");
+		}
 	}
 });
 
