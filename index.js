@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var http = require('http');
+var querystring = require('querystring');
 
 var jsonParser = bodyParser.json();
 
@@ -24,9 +26,40 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 	response.sendStatus(200);
 	if (request.body.change_type === "create") {
 		if (request.body.is_estimated === false) {
-			console.log(request.body.name + " has no time estimate!");
+			console.log(request.body.id + " has no time estimate! Let's fix that...");
+			addEstimate(request.body.id);
+
 		}
 	}
 });
 
+function addEstimate(taskID) {
+	
+	var data = querystring.stringify({
+	      username: "nlocke@uwhealth.org",
+	      password: "N0@h1Tyler23"
+	    });
 
+	var options = {
+	    host: 'https://requestbin.herokuapp.com',
+	    port: 80,
+	    path: 'https://requestbin.herokuapp.com/wkryaewk',
+	    method: 'POST',
+	    headers: {
+	        'Content-Type': 'application/x-www-form-urlencoded',
+	        'Content-Length': Buffer.byteLength(data)
+	    }
+	};
+
+	var req = http.request(options, function(res) {
+	    res.setEncoding('utf8');
+	    res.on('data', function (chunk) {
+	        console.log("body: " + chunk);
+	    });
+	});
+
+	req.write(data);
+	req.end();
+}
+
+//https://app.liquidplanner.com/api/workspaces//tasks/:id/track_time
