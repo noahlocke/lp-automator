@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var request = require('request');
 var http = require('http');
 var querystring = require('querystring');
 
@@ -34,32 +35,45 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 });
 
 function addEstimate(taskID) {
-	
-	var data = querystring.stringify({
-	      username: "nlocke@uwhealth.org",
-	      password: "N0@h1Tyler23"
-	    });
-
-	var options = {
-	    host: 'requestbin.herokuapp.com',
-	    port: 443,
-	    path: '/wkryaewk',
-	    method: 'POST',
-	    headers: {
-	        'Content-Type': 'application/x-www-form-urlencoded',
-	        'Content-Length': Buffer.byteLength(data)
-	    }
+	var config = {};
+	config.liquidplanner = {
+		'email'   : 'ehealthoncall@gmail.com',
+		'pass'    : 'oeipeanutbutterandjelly40',
+		'spaceId' : 85533,
+		'apiPath' : 'app.liquidplanner.com/api/workspaces/'
 	};
 
-	var req = http.request(options, function(res) {
-	    res.setEncoding('utf8');
-	    res.on('data', function (chunk) {
-	        console.log("body: " + chunk);
-	    });
-	});
+	var url = "https://" + config.email + ":" + config.pass + config.apiPath + config.spaceId + "/tasks" + taskID; 
+	var data = {
+		"id": taskID,
+		"assignments": [
+		{
+			"low_effort_remaining": 0.1,
+			"high_effort_remaining": 1
+		}
+			]
+	}
+	request(
+	    { method: 'PUT'
+	    , uri: url
+	    , multipart:
+	      [ { 'content-type': 'application/json'
+	        ,  body: JSON.stringify(data)
+	        }
+	      , { body: 'I am an attachment' }
+	      ]
+	    }
+	  , function (error, response, body) {
+	      if(response.statusCode == 201){
+	        console.log('document saved as: http://mikeal.iriscouch.com/testjs/'+ rand)
+	      } else {
+	        console.log('error: '+ response.statusCode)
+	        console.log(body)
+	      }
+	    }
+	  );
 
-	req.write(data);
-	req.end();
+
 }
 
 //https://app.liquidplanner.com/api/workspaces//tasks/:id/track_time
