@@ -28,13 +28,13 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 	if (request.body.change_type === "create") {
 		if (request.body.is_estimated === false) {
 			console.log(request.body.id + " has no time estimate! Let's fix that...");
-			addEstimate(request.body.id);
+			addEstimate(request.body.id,request.body.assignments[0].id);
 
 		}
 	}
 });
 
-function addEstimate(taskID) {
+function addEstimate(taskId,assId) {
 	var config = {};
 	config.liquidplanner = {
 		'email'   : 'ehealthoncall@gmail.com',
@@ -43,19 +43,15 @@ function addEstimate(taskID) {
 		'apiPath' : 'app.liquidplanner.com/api/workspaces/'
 	};
 
-	var url = "https://" + config.liquidplanner.email + ":" + config.liquidplanner.pass + "@" + config.liquidplanner.apiPath + config.liquidplanner.spaceId + "/tasks/" + taskID + "/"; 
+	var url = "https://" + config.liquidplanner.email + ":" + config.liquidplanner.pass + "@" + config.liquidplanner.apiPath + config.liquidplanner.spaceId + "/tasks/" + taskId + "/"; 
 	console.log(url);
-	var data = {
-		"id": taskID,
-		"assignments": [
-		{
-			"low_effort_remaining": 0.1,
-			"high_effort_remaining": 1
-		}
-			]
-	};
+	var data = { 
+		    "assignment_id": assId,
+		    "low_effort_remaining": 0.1,
+		    "high_effort_remaining": 1
+	}
 	request(
-	    { 	method: 'PUT', 
+	    { 	method: 'POST', 
         		uri: url, 
         		multipart:
 	      [ { 'content-type': 'application/json',  
