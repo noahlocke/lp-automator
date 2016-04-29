@@ -29,7 +29,6 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 		if (request.body.is_estimated === false) {
 			console.log(request.body.id + " has no time estimate! Let's fix that...");
 			addEstimate(request.body.id,request.body.assignments[0].id);
-
 		}
 	}
 });
@@ -43,33 +42,42 @@ function addEstimate(taskId,assId) {
 		'apiPath' : 'app.liquidplanner.com/api/workspaces/'
 	};
 
-	var url = "https://" + config.liquidplanner.email + ":" + config.liquidplanner.pass + "@" + config.liquidplanner.apiPath + config.liquidplanner.spaceId + "/tasks/" + taskId + "/update_assignment"; 
-	console.log(url);
+	var url = "https://"
+		+ config.liquidplanner.email 
+		+ ":" 
+		+ config.liquidplanner.pass 
+		+ "@" 
+		+ config.liquidplanner.apiPath 
+		+ config.liquidplanner.spaceId 
+		+ "/tasks/" 
+		+ taskId 
+		+ "/update_assignment";
+
 	var data = { 
 		    "assignment_id": assId,
 		    "low_effort_remaining": 0.1,
 		    "high_effort_remaining": 1
 	};
-	console.log(JSON.stringify(data));
+
 	request(
-	    { 	method: 'POST', 
+	    { 	
+	    	method: 'POST', 
         		uri: url, 
-        		headers: { 
-        				'Content-Type': 'application/json'
+        		headers: 
+        		{ 
+        			'Content-Type': 'application/json'
         		},         			
 	        	body:JSON.stringify(data)	        		
 	    },
 	    function (error, response, body) {
-	      if(!error && response.statusCode == 200){
-	        console.log('PUT request was successful');
-	      } else {
-	        console.log('error: '+ response.statusCode);
-	        console.log(body);
-	      }
+	    	if(!error && response.statusCode == 200){
+	        		console.log('PUT request was successful');
+	      	} else {
+	        		console.log('error: '+ response.statusCode);
+	        		console.log(body);
+	      	}
 	    }
-	  );
+	);
 
 
 }
-
-//https://app.liquidplanner.com/api/workspaces//tasks/:id/
