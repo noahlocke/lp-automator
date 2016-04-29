@@ -62,7 +62,7 @@ function addEstimate(taskID) {
            	body: JSON.stringify(data)
 	        }
 	      ]
-	    }
+	    },
 	    function (error, response, body) {
 	      if(!error && response.statusCode == 200){
 	        console.log('PUT request was successful');
