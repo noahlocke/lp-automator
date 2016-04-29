@@ -49,7 +49,7 @@ function addEstimate(taskId,assId) {
 		    "assignment_id": assId,
 		    "low_effort_remaining": 0.1,
 		    "high_effort_remaining": 1
-	}
+	};
 	request(
 	    { 	method: 'POST', 
         		uri: url, 
