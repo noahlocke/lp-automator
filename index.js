@@ -43,7 +43,7 @@ function addEstimate(taskId,assId) {
 		'apiPath' : 'app.liquidplanner.com/api/workspaces/'
 	};
 
-	var url = "https://" + config.liquidplanner.email + ":" + config.liquidplanner.pass + "@" + config.liquidplanner.apiPath + config.liquidplanner.spaceId + "/tasks/" + taskId + "/"; 
+	var url = "https://" + config.liquidplanner.email + ":" + config.liquidplanner.pass + "@" + config.liquidplanner.apiPath + config.liquidplanner.spaceId + "/tasks/" + taskId + "/update_assignment"; 
 	console.log(url);
 	var data = { 
 		    "assignment_id": assId,
