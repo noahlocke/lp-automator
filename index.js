@@ -1,9 +1,9 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var request = require('request');
-var http = require('http');
-var querystring = require('querystring');
+var 	express 	= require('express'),
+ 	app 		= express(),
+ 	bodyParser 	= require('body-parser'),
+	request 	= require('request'),
+	http 		= require('http'),
+ 	querystring 	= require('querystring');
 
 var jsonParser = bodyParser.json();
 
@@ -44,6 +44,7 @@ function addEstimate(taskID) {
 	};
 
 	var url = "https://" + config.email + ":" + config.pass + config.apiPath + config.spaceId + "/tasks" + taskID; 
+	console.log(url);
 	var data = {
 		"id": taskID,
 		"assignments": [
@@ -52,23 +53,22 @@ function addEstimate(taskID) {
 			"high_effort_remaining": 1
 		}
 			]
-	}
+	};
 	request(
-	    { method: 'PUT'
-	    , uri: url
-	    , multipart:
-	      [ { 'content-type': 'application/json'
-	        ,  body: JSON.stringify(data)
+	    { method: 'PUT', 
+        uri: url, 
+        multipart:
+	      [ { 'content-type': 'application/json',  
+           	body: JSON.stringify(data)
 	        }
-	      , { body: 'I am an attachment' }
 	      ]
-	    }
-	  , function (error, response, body) {
-	      if(response.statusCode == 201){
-	        console.log('document saved as: http://mikeal.iriscouch.com/testjs/'+ rand)
+	    },
+	    function (error, response, body) {
+	      if(response.statusCode == 200){
+	        console.log('PUT request was successful');
 	      } else {
-	        console.log('error: '+ response.statusCode)
-	        console.log(body)
+	        console.log('error: '+ response.statusCode);
+	        console.log(body);
 	      }
 	    }
 	  );
