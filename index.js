@@ -62,7 +62,7 @@ function addEstimate(taskID) {
            	body: JSON.stringify(data)
 	        }
 	      ]
-	    },
+	    }
 	  //   function (error, response, body) {
 	  //     if(response.statusCode == 200){
 	  //       console.log('PUT request was successful');
@@ -71,7 +71,7 @@ function addEstimate(taskID) {
 	  //       console.log(body);
 	  //     }
 	  //   }
-	  // );
+	  );
 
 
 }
