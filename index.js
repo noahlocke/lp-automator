@@ -56,7 +56,7 @@ function addEstimate(taskId,assId) {
         		uri: url, 
         		multipart:
 	      [ { 'content-type': 'application/json',  
-           	body: JSON.stringify(data)
+           	body: data
 	        }
 	      ]
 	    },
