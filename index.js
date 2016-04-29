@@ -43,7 +43,7 @@ function addEstimate(taskID) {
 		'apiPath' : 'app.liquidplanner.com/api/workspaces/'
 	};
 
-	var url = "https://" + config.email + ":" + config.pass + config.apiPath + config.spaceId + "/tasks" + taskID; 
+	var url = "https://" + config.email + ":" + config.pass + config.apiPath + config.spaceId + "/tasks/" + taskID + "/"; 
 	console.log(url);
 	var data = {
 		"id": taskID,
@@ -55,25 +55,25 @@ function addEstimate(taskID) {
 			]
 	};
 	request(
-	    { method: 'PUT', 
-        uri: url, 
-        multipart:
+	    { 	method: 'PUT', 
+        		uri: url, 
+        		multipart:
 	      [ { 'content-type': 'application/json',  
            	body: JSON.stringify(data)
 	        }
 	      ]
 	    },
-	    function (error, response, body) {
-	      if(response.statusCode == 200){
-	        console.log('PUT request was successful');
-	      } else {
-	        console.log('error: '+ response.statusCode);
-	        console.log(body);
-	      }
-	    }
-	  );
+	  //   function (error, response, body) {
+	  //     if(response.statusCode == 200){
+	  //       console.log('PUT request was successful');
+	  //     } else {
+	  //       console.log('error: '+ response.statusCode);
+	  //       console.log(body);
+	  //     }
+	  //   }
+	  // );
 
 
 }
 
-//https://app.liquidplanner.com/api/workspaces//tasks/:id/track_time
+//https://app.liquidplanner.com/api/workspaces//tasks/:id/
