@@ -54,15 +54,10 @@ function addEstimate(taskId,assId) {
 	request(
 	    { 	method: 'POST', 
         		uri: url, 
-        		multipart: {
-        			chunked: false,
-        			data: [ 
-        			{ 
-        				'content-type': 'application/json',  
-           			body: JSON.stringify(data)
-	        		}
-	      		]
-	    	}
+        		headers: { 
+        				'Content-Type': 'application/json'
+        		},         			
+	        	body:JSON.stringify(data)	        		
 	    },
 	    function (error, response, body) {
 	      if(!error && response.statusCode == 200){
