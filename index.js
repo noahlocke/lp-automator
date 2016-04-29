@@ -63,14 +63,14 @@ function addEstimate(taskID) {
 	        }
 	      ]
 	    }
-	  //   function (error, response, body) {
-	  //     if(response.statusCode == 200){
-	  //       console.log('PUT request was successful');
-	  //     } else {
-	  //       console.log('error: '+ response.statusCode);
-	  //       console.log(body);
-	  //     }
-	  //   }
+	    function (error, response, body) {
+	      if(!error && response.statusCode == 200){
+	        console.log('PUT request was successful');
+	      } else {
+	        console.log('error: '+ response.statusCode);
+	        console.log(body);
+	      }
+	    }
 	  );
 
 
