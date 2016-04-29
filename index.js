@@ -50,15 +50,19 @@ function addEstimate(taskId,assId) {
 		    "low_effort_remaining": 0.1,
 		    "high_effort_remaining": 1
 	};
-	console.log(data);
+	console.log(JSON.stringify(data));
 	request(
 	    { 	method: 'POST', 
         		uri: url, 
-        		multipart:
-	      [ { 'content-type': 'application/json',  
-           	body: data
-	        }
-	      ]
+        		multipart: {
+        			chunked: false,
+        			data: [ 
+        			{ 
+        				'content-type': 'application/json',  
+           			body: JSON.stringify(data)
+	        		}
+	      		]
+	    	}
 	    },
 	    function (error, response, body) {
 	      if(!error && response.statusCode == 200){
