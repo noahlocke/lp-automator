@@ -50,7 +50,7 @@ function addEstimate(taskId,assId) {
 		    "low_effort_remaining": 0.1,
 		    "high_effort_remaining": 1
 	};
-	console.log(JSON.stringify(data));
+	console.log(data);
 	request(
 	    { 	method: 'POST', 
         		uri: url, 
