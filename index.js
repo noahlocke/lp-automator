@@ -25,7 +25,7 @@ app.listen(app.get('port'), function() {
 
 app.post('/liquid-task', jsonParser, function (request, response) {
 	response.sendStatus(200);
-	if (request.body.change_type === "create") {
+	if (request.body.change_type === "create" || request.body.change_type === "update") {
 		if (request.body.is_estimated === false) {
 			console.log(request.body.id + " has no time estimate! Let's fix that...");
 			addEstimate(request.body.id,request.body.assignments[0].id);
