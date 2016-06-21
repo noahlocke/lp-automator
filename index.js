@@ -96,7 +96,7 @@ function packageMe(taskId) {
 		+ taskId;
 
 	var data = { 
-		    "package_id": 11759345; 
+		    "package_id": 11759345
 	};
 
 	request(
