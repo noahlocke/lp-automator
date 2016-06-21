@@ -6,7 +6,13 @@ var 	express 	= require('express'),
  	querystring 	= require('querystring');
 
 var jsonParser = bodyParser.json();
-
+var config = {};
+config.liquidplanner = {
+	'email'   : 'ehealthoncall@gmail.com',
+	'pass'    : 'oeipeanutbutterandjelly40',
+	'spaceId' : 85533,
+	'apiPath' : 'app.liquidplanner.com/api/workspaces/'
+};
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -29,18 +35,14 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 		if (request.body.is_estimated === false) {
 			console.log(request.body.id + " has no time estimate! Let's fix that...");
 			addEstimate(request.body.id,request.body.assignments[0].id);
+		} else if (request.body.name === "TEMPLATE: Bug Fix") {
+			console.log(request.body.id + " needs to be packaged, let me take care of that for you.");
+			packageMe(request.body.id);
 		}
-	}
+	} 
 });
 
 function addEstimate(taskId,assId) {
-	var config = {};
-	config.liquidplanner = {
-		'email'   : 'ehealthoncall@gmail.com',
-		'pass'    : 'oeipeanutbutterandjelly40',
-		'spaceId' : 85533,
-		'apiPath' : 'app.liquidplanner.com/api/workspaces/'
-	};
 
 	var url = "https://"
 		+ config.liquidplanner.email 
@@ -80,4 +82,40 @@ function addEstimate(taskId,assId) {
 	);
 
 
+}
+
+function packageMe(taskId) {
+	var url = "https://"
+		+ config.liquidplanner.email 
+		+ ":" 
+		+ config.liquidplanner.pass 
+		+ "@" 
+		+ config.liquidplanner.apiPath 
+		+ config.liquidplanner.spaceId 
+		+ "/tasks/" 
+		+ taskId;
+
+	var data = { 
+		    "package_id": 11759345; 
+	};
+
+	request(
+	    { 	
+	    	method: 'POST', 
+        		uri: url, 
+        		headers: 
+        		{ 
+        			'Content-Type': 'application/json'
+        		},         			
+	        	body:JSON.stringify(data)	        		
+	    },
+	    function (error, response, body) {
+	    	if(!error && response.statusCode == 200){
+	        		console.log('PUT request was successful');
+	      	} else {
+	        		console.log('error: '+ response.statusCode);
+	        		console.log(body);
+	      	}
+	    }
+	);
 }
