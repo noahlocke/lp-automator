@@ -2,6 +2,8 @@
 
 This app is currently hosted on Heroku (don't tell IS) so that it can receive webhooks from LiquidPlanner.
 
+To get Heroku running, install the Heroky CLI: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up 
+
 ##What is does
 ###Time Estimates
 Anytime a task is created/updated, a web hook is sent to the app's designated path:
