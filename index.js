@@ -75,6 +75,8 @@ function addEstimate(taskId,assId) {
 		    "high_effort_remaining": 1
 	};
 
+	var requestMethod = 'POST';
+
 	newHttpRequest(url, data);
 }
 //===============================
@@ -99,13 +101,15 @@ function packageMe(taskId,packageId) {
 			}
 	};
 
-	newHttpRequest(url, data);
+	var requestMethod = 'PUT';
+
+	newHttpRequest(url, data, requestMethod);
 }
 
-function newHttpRequest (url, data) {
+function newHttpRequest (url, data, requestMethod) {
 	 request(
 	    { 	
-	    	method: 'PUT', 
+	    	method: requestMethod, 
         		uri: url, 
         		headers: 
         		{ 
