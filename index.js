@@ -12,6 +12,9 @@ config.liquidplanner = {
 	'pass'    : 'oeipeanutbutterandjelly40',
 	'spaceId' : 85533,
 	'apiPath' : 'app.liquidplanner.com/api/workspaces/'
+	'prioritizePackageId' : 11759345,
+	'asapPackageId' : 31299875,
+	'knownBugsFolderId' : 21320078 
 };
 app.set('port', (process.env.PORT || 5000));
 
@@ -97,12 +100,16 @@ function packageMe(taskId) {
 		+ taskId;
 
 	var data = { 
-		    "package_id": 11759345
+		"task":
+			{
+				"package_id": config.liquidplanner.prioritizePackageId,
+		    		"parent_id": config.liquidplanner.knownBugsFolderId
+			}
 	};
 
 	request(
 	    { 	
-	    	method: 'POST', 
+	    	method: 'PUT', 
         		uri: url, 
         		headers: 
         		{ 
@@ -112,7 +119,7 @@ function packageMe(taskId) {
 	    },
 	    function (error, response, body) {
 	    	if(!error && response.statusCode == 200){
-	        		console.log('PUT request was successful');
+	        		console.log('POST request was successful');
 	      	} else {
 	        		console.log('error: '+ response.statusCode);
 	        		console.log(body);
