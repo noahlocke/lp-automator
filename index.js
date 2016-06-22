@@ -11,7 +11,7 @@ config.liquidplanner = {
 	'email'   : 'ehealthoncall@gmail.com',
 	'pass'    : 'oeipeanutbutterandjelly40',
 	'spaceId' : 85533,
-	'apiPath' : 'app.liquidplanner.com/api/workspaces/'
+	'apiPath' : 'app.liquidplanner.com/api/workspaces/',
 	'prioritizePackageId' : 11759345,
 	'asapPackageId' : 31299875,
 	'knownBugsFolderId' : 21320078 
