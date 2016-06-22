@@ -41,7 +41,10 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 		// } else 
 		if (request.body.name === "TEMPLATE: Bug Fix") {
 			console.log(request.body.id + " needs to be packaged, let me take care of that for you.");
-			packageMe(request.body.id);
+			packageMe(request.body.id, config.liquidplanner.prioritizePackageId);
+		} else if (request.body.name === "TEMPLATE: Urgent Bug Fix") {
+			console.log(request.body.id + " is URGENT and needs to be packaged, let me take care of that for you.");
+			packageMe(request.body.id, config.liquidplanner.asapPackageId);
 		}
 	} 
 });
@@ -77,7 +80,7 @@ function addEstimate(taskId,assId) {
 	    },
 	    function (error, response, body) {
 	    	if(!error && response.statusCode == 200){
-	        		console.log('PUT request was successful');
+	        		console.log('POST request was successful');
 	      	} else {
 	        		console.log('error: '+ response.statusCode);
 	        		console.log(body);
@@ -88,7 +91,7 @@ function addEstimate(taskId,assId) {
 
 }
 
-function packageMe(taskId) {
+function packageMe(taskId,packageId) {
 	var url = "https://"
 		+ config.liquidplanner.email 
 		+ ":" 
@@ -102,7 +105,7 @@ function packageMe(taskId) {
 	var data = { 
 		"task":
 			{
-				"package_id": config.liquidplanner.prioritizePackageId,
+				"package_id": packageId,
 		    		"parent_id": config.liquidplanner.knownBugsFolderId
 			}
 	};
@@ -119,7 +122,7 @@ function packageMe(taskId) {
 	    },
 	    function (error, response, body) {
 	    	if(!error && response.statusCode == 200){
-	        		console.log('POST request was successful');
+	        		console.log('PUT request was successful');
 	      	} else {
 	        		console.log('error: '+ response.statusCode);
 	        		console.log(body);
