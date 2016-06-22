@@ -2,8 +2,6 @@ var 	express 	= require('express'),
  	app 		= express(),
  	bodyParser 	= require('body-parser'),
 	request 	= require('request'),
-	http 		= require('http'),
- 	querystring 	= require('querystring');
 
 var jsonParser = bodyParser.json();
 
