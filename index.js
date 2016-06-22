@@ -46,7 +46,7 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 			addEstimate(request.body.id,request.body.assignments[0].id);
 		}
 	} else if (request.body.change_type === "update") {
-		if (request.body.is_estimated === false) {
+		if (request.body.is_estimated === false && request.body.is_done === false) {
 			console.log(request.body.id + " has no time estimate! Let's fix that...");
 			addEstimate(request.body.id,request.body.assignments[0].id);
 		} 
