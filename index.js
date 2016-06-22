@@ -6,6 +6,28 @@ var 	express 	= require('express'),
  	querystring 	= require('querystring');
 
 var jsonParser = bodyParser.json();
+
+
+app.set('port', (process.env.PORT || 5000));
+
+// app.use(express.static(__dirname + '/public'));
+
+// // views is directory for all template files
+// app.set('views', __dirname + '/views');
+// app.set('view engine', 'ejs');
+
+// app.get('/', function(request, response) {
+//   response.render('pages/index');
+// });
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
+
+//==========================
+//===LIQUIDPLANNER=CONFIG===
+//==========================
 var config = {};
 config.liquidplanner = {
 	'email'   : 'ehealthoncall@gmail.com',
@@ -16,21 +38,11 @@ config.liquidplanner = {
 	'asapPackageId' : 31299875,
 	'knownBugsFolderId' : 21320078 
 };
-app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(__dirname + '/public'));
-
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-app.get('/', function(request, response) {
-  response.render('pages/index');
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+//==========================
+//===LISTEN=FOR=WEBHOOK====
+//===AND=PERFORM=LOGIC=====
+//==========================
 
 app.post('/liquid-task', jsonParser, function (request, response) {
 	response.sendStatus(200);
@@ -53,6 +65,9 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 	}
 });
 
+//============================
+//===ADD=TIME=ESTIMATE========
+//============================
 function addEstimate(taskId,assId) {
 
 	var url = "https://"
@@ -94,7 +109,9 @@ function addEstimate(taskId,assId) {
 
 
 }
-
+//===============================
+//===PACKAGE=BUG=TASKS=========
+//===============================
 function packageMe(taskId,packageId) {
 	var url = "https://"
 		+ config.liquidplanner.email 
