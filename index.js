@@ -28,6 +28,15 @@ config.liquidplanner = {
 	'knownBugsFolderId' : 21320078 
 };
 
+var baseURL = "https://"
+		+ config.liquidplanner.email 
+		+ ":" 
+		+ config.liquidplanner.pass 
+		+ "@" 
+		+ config.liquidplanner.apiPath 
+		+ config.liquidplanner.spaceId 
+		+ "/tasks/";
+
 //=============================================
 //===LISTEN=FOR=WEBHOOK=AND=PERFORM=LOGIC===
 //=============================================
@@ -58,14 +67,7 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 //=======================
 function addEstimate(taskId,assId) {
 
-	var url = "https://"
-		+ config.liquidplanner.email 
-		+ ":" 
-		+ config.liquidplanner.pass 
-		+ "@" 
-		+ config.liquidplanner.apiPath 
-		+ config.liquidplanner.spaceId 
-		+ "/tasks/" 
+	var url = baseURL
 		+ taskId 
 		+ "/update_assignment";
 
@@ -83,14 +85,8 @@ function addEstimate(taskId,assId) {
 //===PACKAGE=BUG=TASKS=========
 //===============================
 function packageMe(taskId,packageId) {
-	var url = "https://"
-		+ config.liquidplanner.email 
-		+ ":" 
-		+ config.liquidplanner.pass 
-		+ "@" 
-		+ config.liquidplanner.apiPath 
-		+ config.liquidplanner.spaceId 
-		+ "/tasks/" 
+	
+	var url = baseURL
 		+ taskId;
 
 	var data = { 
