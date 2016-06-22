@@ -77,7 +77,7 @@ function addEstimate(taskId,assId) {
 
 	var requestMethod = 'POST';
 
-	newHttpRequest(url, data);
+	newHttpRequest(url, data, requestMethod);
 }
 //===============================
 //===PACKAGE=BUG=TASKS=========
