@@ -5,9 +5,9 @@ var 	express 	= require('express'),
 
 var jsonParser = bodyParser.json();
 
-//===============================
-//===EXPRESS=SETUP==============
-//===============================
+//====================
+//===EXPRESS=SETUP===
+//====================
 app.set('port', (process.env.PORT || 5000));
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
@@ -28,10 +28,9 @@ config.liquidplanner = {
 	'knownBugsFolderId' : 21320078 
 };
 
-//==========================
-//===LISTEN=FOR=WEBHOOK====
-//===AND=PERFORM=LOGIC=====
-//==========================
+//=============================================
+//===LISTEN=FOR=WEBHOOK=AND=PERFORM=LOGIC===
+//=============================================
 
 app.post('/liquid-task', jsonParser, function (request, response) {
 	response.sendStatus(200);
@@ -54,9 +53,9 @@ app.post('/liquid-task', jsonParser, function (request, response) {
 	}
 });
 
-//============================
-//===ADD=TIME=ESTIMATE========
-//============================
+//=======================
+//===ADD=TIME=ESTIMATE===
+//=======================
 function addEstimate(taskId,assId) {
 
 	var url = "https://"
@@ -76,27 +75,7 @@ function addEstimate(taskId,assId) {
 		    "high_effort_remaining": 1
 	};
 
-	request(
-	    { 	
-	    	method: 'POST', 
-        		uri: url, 
-        		headers: 
-        		{ 
-        			'Content-Type': 'application/json'
-        		},         			
-	        	body:JSON.stringify(data)	        		
-	    },
-	    function (error, response, body) {
-	    	if(!error && response.statusCode == 200){
-	        		console.log('POST request was successful');
-	      	} else {
-	        		console.log('error: '+ response.statusCode);
-	        		console.log(body);
-	      	}
-	    }
-	);
-
-
+	newHttpRequest(url, data);
 }
 //===============================
 //===PACKAGE=BUG=TASKS=========
@@ -120,7 +99,11 @@ function packageMe(taskId,packageId) {
 			}
 	};
 
-	request(
+	newHttpRequest(url, data);
+}
+
+function newHttpRequest (url, data) {
+	 request(
 	    { 	
 	    	method: 'PUT', 
         		uri: url, 
@@ -132,7 +115,7 @@ function packageMe(taskId,packageId) {
 	    },
 	    function (error, response, body) {
 	    	if(!error && response.statusCode == 200){
-	        		console.log('PUT request was successful');
+	        		console.log('Request was successful');
 	      	} else {
 	        		console.log('error: '+ response.statusCode);
 	        		console.log(body);
