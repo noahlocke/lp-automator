@@ -1,7 +1,7 @@
 var 	express 	= require('express'),
  	app 		= express(),
  	bodyParser 	= require('body-parser'),
-	request 	= require('request'),
+	request 	= require('request');
 
 var jsonParser = bodyParser.json();
 
