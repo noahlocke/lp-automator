@@ -14,10 +14,3 @@ The app checks to see if the newly created task is from an intake form:
 
 ***note that in order to package a task, you must designate a parent_id as well. In both cases, the Project Folder/parent_id is "Know Bugs", or, 21320078.
 
-##Things to note:
-
-Until we have a stable environment for running Node.js apps on public-facing servers, I'll keep this running on Heroku for free. 
-
-##Security
-
-The app is currently not very secure. It sends a 200 response to any POST request at /liquid-task, however it does not touch any UW Health systems what-so-ever, so this is a very low-risk application in general. 
