@@ -1,5 +1,5 @@
-#LiquidPlanner Auto Estimator
-
+#LiquidPlanner Automator
+Thanks to Heroku for providing the boilerplat for this: https://github.com/heroku/node-js-getting-started.git
 ##What is does
 ###Time Estimates
 Anytime a task is created/updated, a web hook is sent to the app's designated path.
