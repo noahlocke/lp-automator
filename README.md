@@ -1,6 +1,7 @@
 #LiquidPlanner Automator
-Thanks to Heroku for providing the boilerplat for this: https://github.com/heroku/node-js-getting-started.git
-***A note to the public: this app is configured to work with my specific LP workspace, including package and folder IDs. You'll need to have your own LiquidPlanner workspace and specify your own actions.
+Thanks to Heroku for providing the boilerplate for this: https://github.com/heroku/node-js-getting-started.git
+
+***A note to the public: this app is configured to work with my specific LP workspace, including package and folder IDs. You'll need to have your own LiquidPlanner workspace and specify your own actions.***
 ##What is does
 ###Time Estimates
 Anytime a task is created/updated, a web hook is sent to the app's designated path.
