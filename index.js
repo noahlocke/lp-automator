@@ -19,10 +19,11 @@ app.listen(app.get('port'), function() {
 //==========================
 var config = {};
 config.liquidplanner = {
-	'email'   : 'ehealthoncall@gmail.com',
-	'pass'    : 'oeipeanutbutterandjelly40',
-	'spaceId' : 85533,
+	'email'   : 'YOUR LIQUID PLANNER EMAIL',
+	'pass'    : 'YOUR LIQUID PLANNER PASSWORD',
+	'spaceId' : YOUR LIQUIDPLANNER WORKSPACEID,
 	'apiPath' : 'app.liquidplanner.com/api/workspaces/',
+	//THESE PACKAGES AND FOLDERS WILL BE DIFFERENT FOR YOU.
 	'prioritizePackageId' : 11759345,
 	'asapPackageId' : 31299875,
 	'knownBugsFolderId' : 21320078 
