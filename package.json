@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
+  "name": "LIQUIDPLANNER-AUTOMATOR",
   "version": "0.2.5",
-  "description": "A sample Node.js app using Express 4",
+  "description": "A node.js app to automate certain LiquidPlanner functions via the API",
   "engines": {
     "node": "5.9.1"
   },
@@ -11,14 +11,12 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
-    "ejs": "2.4.1",
     "express": "4.13.3",
-    "querystring": "^0.2.0",
     "request": "^2.72.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/noahlocke/lp-automator"
   },
   "keywords": [
     "node",
